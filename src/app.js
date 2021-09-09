@@ -83,7 +83,36 @@ App = {
   
     renderBirds: async () => {
       // Load all birds from the blockchain
-    
+      const birdCount = await App.bird.totalSupply()
+      const $birdTemplate = $('.birdTemplate')
+      console.log('birdCount: '+birdCount)
+      for (var i = 0; i < birdCount; i++) {
+        const birdId = await App.bird.birds(i)
+        
+        console.log('birdId: '+birdId)
+
+        // Create the html for the bird
+        const $newBirdTemplate = $birdTemplate.clone()
+        $newBirdTemplate.find('.birdId').html(birdId)
+        $newBirdTemplate.find('#birdImg').attr('src', "https://www.peppercarrot.com/extras/html/2019_bird-generator/avatar.php?seed="+birdId);
+        // $newBirdTemplate.find('.birdImg').html(birdImg).attr(src, img_02.png);
+        // .prop('birdId', birdId)
+
+        $('#birdList').append($newBirdTemplate)
+
+        // Show the birds
+        $newBirdTemplate.show()
+      }
+    },
+
+    mintBird: async () => {
+      App.setLoading(true)
+      const bird = $('#bird').val();
+
+      // var etherAmount = web3.toBigNumber($("#paidAmount").val());
+      // var weiValue = web3.toWei(etherAmount,'ether');
+      await App.bird.mint(bird, {from: web3.eth.accounts[0]})
+      window.location.reload()
     },
   
     setLoading: (boolean) => {

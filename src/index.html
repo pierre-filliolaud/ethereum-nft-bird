@@ -47,18 +47,36 @@
         </li>
       </ul>
     </nav>
-    <!-- <div class="container-fluid">
+    <div class="container-fluid">
+      <div class="row">
+        <main role="main" class="col-lg-12 d-flex justify-content-center">
+          <div id="mint" class="text-center">
+            <form onSubmit="App.mintBird(); return false;">
+              https://www.peppercarrot.com/extras/html/2019_bird-generator/
+              <br/>
+              <input id="bird" type='text' className='form-control mb-1' placeholder='e.g. 61390a126d04b' required />
+              <input type='submit' className='btn btn-block btn-primary' value='MINT' />
+            </form>
+          </div>
+        </main>
+      </div>
       <div class="row">
         <main role="main" class="col-lg-12 d-flex justify-content-center">
           <div id="loader" class="text-center">
             <p class="text-center">Loading...</p>
           </div>
           <div id="content">
-            
+            <div id="birdList" className="col-md-3 mb-3">
+              <div class="birdTemplate">
+                <img id="birdImg" class="birdImg" src="" />
+                <br/>
+                <div id="birdId" class="birdId"></div>
+              </div>
+            </div>
           </div>
         </main>
       </div>
-    </div> -->
+    </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
