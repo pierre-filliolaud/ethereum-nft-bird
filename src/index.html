@@ -52,7 +52,9 @@
         <main role="main" class="col-lg-12 d-flex justify-content-center">
           <div id="mint" class="text-center">
             <form onSubmit="App.mintBird(); return false;">
-              https://www.peppercarrot.com/extras/html/2019_bird-generator/
+              <p class="fw-normal">Please select a bird on:</p>
+              <p class="font-weight-bold">https://www.peppercarrot.com/extras/html/2019_bird-generator/</p>
+              <br/>
               <br/>
               <input id="bird" type='text' className='form-control mb-1' placeholder='e.g. 61390a126d04b' required />
               <input type='submit' className='btn btn-block btn-primary' value='MINT' />
@@ -61,20 +63,25 @@
         </main>
       </div>
       <div class="row">
-        <main role="main" class="col-lg-12 d-flex justify-content-center">
           <div id="loader" class="text-center">
             <p class="text-center">Loading...</p>
           </div>
-          <div id="content">
-            <div id="birdList" className="col-md-3 mb-3">
-              <div class="birdTemplate">
-                <img id="birdImg" class="birdImg" src="" />
-                <br/>
-                <div id="birdId" class="birdId"></div>
+          <div id="content" class="container-fluid">
+            <div id="birdList" class="row justify-content-center">
+              <div class="">
+                <div class="card birdTemplate" style="width: 12rem;">
+                  <img id="birdImg" class="card-img-top" src="https://www.peppercarrot.com/extras/html/2019_bird-generator/avatar.php?seed=613b26f8064a1" alt="Card image cap">
+                  <div class="card-body">
+                    <h6 id="birdId" class="card-title text-center">613b26f8064a1</h6>
+                    <p class="card-text"></p>
+                  </div>
+                  <div class="card-footer">
+                    <small class="text-muted">Owner by ...</small>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-        </main>
       </div>
     </div>
 

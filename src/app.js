@@ -85,6 +85,7 @@ App = {
       // Load all birds from the blockchain
       const birdCount = await App.bird.totalSupply()
       const $birdTemplate = $('.birdTemplate')
+      $('.birdTemplate').remove()
       console.log('birdCount: '+birdCount)
       for (var i = 0; i < birdCount; i++) {
         const birdId = await App.bird.birds(i)
@@ -93,7 +94,7 @@ App = {
 
         // Create the html for the bird
         const $newBirdTemplate = $birdTemplate.clone()
-        $newBirdTemplate.find('.birdId').html(birdId)
+        $newBirdTemplate.find('#birdId').html(birdId)
         $newBirdTemplate.find('#birdImg').attr('src', "https://www.peppercarrot.com/extras/html/2019_bird-generator/avatar.php?seed="+birdId);
         // $newBirdTemplate.find('.birdImg').html(birdImg).attr(src, img_02.png);
         // .prop('birdId', birdId)
