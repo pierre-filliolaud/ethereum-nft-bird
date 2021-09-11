@@ -14,8 +14,8 @@ jobs:
               with:
                   node-version: 14.17.1
             - name: Install node.js packages
-              run: npm install
+              run: npm --loglevel=error install
             - name: Install truffle
-              run: npm install -g truffle
+              run: npm --loglevel=error install -g truffle
             - name: Compile contracts
               run: truffle compile
