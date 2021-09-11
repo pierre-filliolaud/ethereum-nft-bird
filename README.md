@@ -19,7 +19,7 @@ truffle test --show-events
 ```
 
 # Screen Shot
-<img width="100" alt="screen shot" src="docs/images/screen-shot.png">
+<img width="600" alt="screen shot" src="docs/images/screen-shot.png">
 
 # Link
     Custom version from: https://www.dappuniversity.com/articles/blockchain-programming
