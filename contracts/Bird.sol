@@ -4,8 +4,8 @@ import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 
 contract Bird is ERC721 {
     string[] public birds;
-    mapping(string => bool) _birdsExists;
-    mapping(string => uint256) _birdsIndex;
+    mapping(bytes32 => bool) _birdsExists;
+    mapping(bytes32 => uint256) _birdsIndex;
 
     constructor() ERC721("Bird", "BIRD") public {
     }
@@ -14,17 +14,17 @@ contract Bird is ERC721 {
     // example Bird: 61390a126d04b
     // linked to https://www.peppercarrot.com/extras/html/2019_bird-generator/avatar.php?seed=61390a126d04b
     function mint(string memory _bird) public {
-        require(!_birdsExists[_bird]);
+        require(!_birdsExists[keccak256(bytes (_bird))]);
         birds.push(_bird);
-        uint _id = birds.length - 1;
+        uint256 _id = birds.length - 1;
         _mint(msg.sender, _id);
-        _birdsExists[_bird] = true;
-        _birdsIndex[_bird] = _id;
+        _birdsExists[keccak256(bytes (_bird))] = true;
+        _birdsIndex[keccak256(bytes (_bird))] = _id;
     }
 
-    function transferFrom(address from, address to, string memory _bird) public {
-        require(_birdsExists[_bird]);
-        uint256 id = _birdsIndex[_bird];
+    function transfer(address from, address to, string memory _bird) public {
+        require(_birdsExists[keccak256(bytes (_bird))]);
+        uint256 id = _birdsIndex[keccak256(bytes (_bird))];
         transferFrom(from, to, id);
     }
 

@@ -90,7 +90,7 @@ contract('Bird', (accounts) => {
       // console.log(accounts[0])
 
       // Transfer
-      const result2 = await this.contract.transferFrom(accounts[0], accounts[1], "#EC058F")
+      const result2 = await this.contract.transfer(accounts[0], accounts[1], "#EC058F")
       const event2 = result2.logs[1].args
       assert.equal(event2.tokenId.toNumber(), 4, 'id is correct')
       // console.log(accounts[0])

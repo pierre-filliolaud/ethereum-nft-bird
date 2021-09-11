@@ -119,8 +119,7 @@ App = {
       window.location.reload()
     },
 
-    tranferBird: async () => {
-      // App.setLoading(true)
+    transferBird: async () => {
       const birdId = $('#birdId').val();
       const from = $('#from').val();
       const to = $('#to').val();
@@ -130,8 +129,8 @@ App = {
 
       // var etherAmount = web3.toBigNumber($("#paidAmount").val());
       // var weiValue = web3.toWei(etherAmount,'ether');
-      await App.bird.transferFrom(from, to, birdId, {from: web3.eth.accounts[0]})
-      // window.location.reload()
+      await App.bird.transfer(from, to, String(birdId), {from: web3.eth.accounts[0]})
+      window.location.reload()
     },
   
     setLoading: (boolean) => {
