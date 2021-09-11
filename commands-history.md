@@ -9,6 +9,9 @@ truffle compile
 truffle migrate
 
 truffle console
-color = await Color.deployed()
-color
-color.address
+contract = await Bird.deployed()
+contract
+contract.address
+
+contract.mint('#cscscs')
+totalSupply = await contract.totalSupply()

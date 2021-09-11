@@ -89,13 +89,16 @@ App = {
       console.log('birdCount: '+birdCount)
       for (var i = 0; i < birdCount; i++) {
         const birdId = await App.bird.birds(i)
+        const ownerEAddress = await App.bird.ownerOf(i)
         
         console.log('birdId: '+birdId)
+        console.log('ownerEAddress: '+ownerEAddress)
 
         // Create the html for the bird
         const $newBirdTemplate = $birdTemplate.clone()
         $newBirdTemplate.find('#birdId').html(birdId)
         $newBirdTemplate.find('#birdImg').attr('src', "https://www.peppercarrot.com/extras/html/2019_bird-generator/avatar.php?seed="+birdId);
+        $newBirdTemplate.find('#ownerEAddress').html(ownerEAddress)
         // $newBirdTemplate.find('.birdImg').html(birdImg).attr(src, img_02.png);
         // .prop('birdId', birdId)
 
@@ -114,6 +117,21 @@ App = {
       // var weiValue = web3.toWei(etherAmount,'ether');
       await App.bird.mint(bird, {from: web3.eth.accounts[0]})
       window.location.reload()
+    },
+
+    tranferBird: async () => {
+      // App.setLoading(true)
+      const birdId = $('#birdId').val();
+      const from = $('#from').val();
+      const to = $('#to').val();
+      console.log('birdId: '+birdId)
+      console.log('from: '+from)
+      console.log('to: '+to)
+
+      // var etherAmount = web3.toBigNumber($("#paidAmount").val());
+      // var weiValue = web3.toWei(etherAmount,'ether');
+      await App.bird.transferFrom(from, to, birdId, {from: web3.eth.accounts[0]})
+      // window.location.reload()
     },
   
     setLoading: (boolean) => {

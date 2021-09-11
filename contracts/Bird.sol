@@ -5,6 +5,7 @@ import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 contract Bird is ERC721 {
     string[] public birds;
     mapping(string => bool) _birdsExists;
+    mapping(string => uint256) _birdsIndex;
 
     constructor() ERC721("Bird", "BIRD") public {
     }
@@ -18,6 +19,13 @@ contract Bird is ERC721 {
         uint _id = birds.length - 1;
         _mint(msg.sender, _id);
         _birdsExists[_bird] = true;
+        _birdsIndex[_bird] = _id;
+    }
+
+    function transferFrom(address from, address to, string memory _bird) public {
+        require(_birdsExists[_bird]);
+        uint256 id = _birdsIndex[_bird];
+        transferFrom(from, to, id);
     }
 
 }
