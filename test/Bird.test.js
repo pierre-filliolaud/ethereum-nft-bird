@@ -85,7 +85,9 @@ contract('Bird', (accounts) => {
       assert.equal(event.tokenId.toNumber(), 4, 'id is correct')
       assert.equal(event.from, '0x0000000000000000000000000000000000000000', 'from is correct')
       assert.equal(event.to, accounts[0], 'to is correct')
-      console.log(accounts[0])
+      const owner = await this.contract.ownerOf(4)
+      assert.equal(owner, accounts[0], 'owner is correct')
+      // console.log(accounts[0])
 
       // Transfer
       const result2 = await this.contract.transferFrom(accounts[0], accounts[1], "#EC058F")
@@ -95,6 +97,9 @@ contract('Bird', (accounts) => {
       // console.log(event2.from)
       assert.equal(event2.from, accounts[0], 'from is correct')
       assert.equal(event2.to, accounts[1], 'to is correct')
+      // check owner
+      const newOwner = await this.contract.ownerOf(4)
+      assert.equal(newOwner, accounts[1], 'newOwner is correct')
     })
   })
 })
