@@ -17,3 +17,5 @@ jobs:
               run: npm install
             - name: Install truffle
               run: npm install truffle
+            - name: Compile contracts
+              run: truffle compile
