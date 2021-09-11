@@ -1,0 +1,19 @@
+name: Application CI
+on: [push, pull_request]
+jobs:
+    pipeline:
+        name: Ethereum pipeline
+        runs-on: ubuntu-latest
+        if: "!contains(github.event.head_commit.message, '[ci skip]') && !contains(github.event.head_commit.message, '[skip ci]') && !contains(github.event.pull_request.title, '[skip ci]') && !contains(github.event.pull_request.title, '[ci skip]')"
+        timeout-minutes: 40
+        env:
+            NODE_VERSION: 14.17.1
+        steps:
+            - uses: actions/checkout@v2
+            - uses: actions/setup-node@v1
+              with:
+                  node-version: 14.17.1
+            - name: Install node.js packages
+              run: npm install
+            - name: Install truffle
+              run: npm install truffle
